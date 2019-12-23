@@ -1,13 +1,21 @@
 package by.bsac.aspects;
 
+import by.bsac.annotations.MethodCall;
 import by.bsac.core.LoggerLevel;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
+import java.util.Arrays;
+import java.util.stream.Stream;
+
+@SuppressWarnings("MissingAspectjAutoproxyInspection")
 @Aspect
 public class MethodCallAspect {
 
@@ -25,8 +33,26 @@ public class MethodCallAspect {
     //Advises
     @Before("methodCallAnnotation()")
     public void logOnMethodCall(JoinPoint jp) {
-        final String LOG_MSG = "Program thread call method [%s];";
-        this.printMessage(String.format(LOG_MSG, jp.getSignature().getName()));
+
+        //log variables
+        final String DEFAULT_LOG_MSG = "Program thread [%s] call method [%s] of class [%s];";
+        String current_thread_name = Thread.currentThread().getName();
+        String caller_method_name = jp.getSignature().getName();
+        String declaring_class_name = jp.getSignature().getDeclaringType().getCanonicalName();
+
+        //Add logs depends on annotation values
+        Method method = ((MethodSignature) jp.getSignature()).getMethod();
+        MethodCall annotation = method.getAnnotation(MethodCall.class);
+        // ? - Print args
+        if (annotation.withArgs()) {
+            Parameter[] args = method.getParameters();
+            StringBuilder sb = new StringBuilder();
+           // Arrays.stream(args).forEach(p -> sb.append(String.format("[Parameter: \"%s\" of type [&s] with value [%s]];", p.getName(), ) +System.lineSeparator()));
+
+        }
+
+
+        this.printMessage(String.format(DEFAULT_LOG_MSG, current_thread_name, caller_method_name, declaring_class_name));
     }
 
     private void printMessage(String message) {

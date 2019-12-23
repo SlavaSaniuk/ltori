@@ -93,6 +93,14 @@
                     <showWeaveInfo>true</showWeaveInfo>
                     <verbose>true</verbose>
                 </configuration>
+                <dependencies>
+                    <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjtools -->
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjtools</artifactId>
+                        <version>1.9.5</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
                         <goals>
