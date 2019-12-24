@@ -15,8 +15,10 @@ import java.lang.reflect.Parameter;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.stream.Stream;
 
+/**
+ * Aspect for {@link MethodCall} annotation.
+ */
 @SuppressWarnings("MissingAspectjAutoproxyInspection")
 @Aspect
 public class MethodCallAspect {
