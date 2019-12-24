@@ -15,4 +15,24 @@ public class Foo {
         LOGGER.debug("Foo!");
     }
 
+    @MethodCall(withArgs = true)
+    public void sayHello(String name, int age) {
+        LOGGER.debug(String.format("Hello! My name is %s. I am %d years old.", name, age));
+    }
+
+    @MethodCall(withReturnType = true)
+    public String returnType(String msg) {
+        LOGGER.debug(msg);
+        return msg;
+    }
+
+    @MethodCall(withStartTime= true)
+    public void startTime(String msg) {
+        LOGGER.debug(msg);
+    }
+
+    @MethodCall(withArgs = true, withReturnType = true, withStartTime = true)
+    public void fullLog(String msg) {
+        LOGGER.debug(msg);
+    }
 }

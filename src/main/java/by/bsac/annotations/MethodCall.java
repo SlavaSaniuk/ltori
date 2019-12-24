@@ -11,4 +11,8 @@ public @interface MethodCall {
 
     boolean withArgs() default false;
 
+    boolean withReturnType() default false;
+
+    boolean withStartTime() default false;
+
 }

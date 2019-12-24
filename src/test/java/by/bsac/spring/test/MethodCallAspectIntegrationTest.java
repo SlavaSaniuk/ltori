@@ -20,4 +20,23 @@ public class MethodCallAspectIntegrationTest {
         foo.sayFoo();
     }
 
+    @Test
+    void sayHello_withArgsParameterIsTrue_shouldDisplayLogWithArgsParameter() {
+        foo.sayHello("Slava", 22);
+    }
+
+    @Test
+    void returnType_withReturnTypeParameterIsTrue_shouldDisplayLogWithReturnType() {
+        foo.returnType("Bar!");
+    }
+
+    @Test
+    void startTime_withStartTimeParameterIsTrue_shouldDisplayLogWithStartTimeParameter() {
+        foo.startTime("GO!");
+    }
+
+    @Test
+    void fullLog_allAnnotationParametersAreTrue_shouldDisplayLog() {
+        foo.fullLog("Full!");
+    }
 }

@@ -90,8 +90,10 @@
                     <complianceLevel>${source.version}</complianceLevel>
                     <source>${source.version}</source>
                     <target>${target.version}</target>
+
                     <showWeaveInfo>true</showWeaveInfo>
                     <verbose>true</verbose>
+
                 </configuration>
                 <dependencies>
                     <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjtools -->
