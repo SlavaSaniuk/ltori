@@ -17,10 +17,11 @@ public class AspectsConfiguration {
         return aspect;
     }
 
-    @Bean(name = "MethodExecutionTimeAspect")
+    @Bean(name = "debugMethodExecutionTimeAspect")
     @Profile("DEBUG")
     public MethodExecutionTimeAspect getMethodExecutionTimeAspect() {
         MethodExecutionTimeAspect aspect = Aspects.aspectOf(MethodExecutionTimeAspect.class);
+        aspect.setLoggerLevel(LoggerLevel.DEBUG);
         return aspect;
     }
 

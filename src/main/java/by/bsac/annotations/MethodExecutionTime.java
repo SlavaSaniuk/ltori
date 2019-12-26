@@ -9,5 +9,14 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface MethodExecutionTime {
 
+    boolean inNanos() default true;
+
+    boolean inMicros() default false;
+
+    boolean inMillis() default false;
+
+    boolean inSeconds() default false;
+
+    boolean inMinutes() default false;
 
 }
