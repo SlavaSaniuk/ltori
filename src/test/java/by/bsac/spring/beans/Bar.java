@@ -4,6 +4,8 @@ import by.bsac.annotations.MethodCall;
 import by.bsac.annotations.MethodExecutionTime;
 import org.springframework.stereotype.Component;
 
+
+
 @Component
 public class Bar {
 
@@ -62,4 +64,5 @@ public class Bar {
         Thread.sleep(1968);
         return msg;
     }
+
 }

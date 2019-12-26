@@ -15,6 +15,9 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.Method;
 import java.time.LocalTime;
 
+/**
+ * Aspect for {@link MethodExecutionTime} annotation.
+ */
 @SuppressWarnings("MissingAspectjAutoproxyInspection")
 @Aspect
 public class MethodExecutionTimeAspect{
@@ -23,9 +26,18 @@ public class MethodExecutionTimeAspect{
     private static final Logger LOGGER = LoggerFactory.getLogger("METHOD_EXECUTION_TIME_ASPECT_LOG");
     private static final DefaultConfigurableLoggingAspect EXECUTION_TIME_LOGGER = new DefaultConfigurableLoggingAspect(LOGGER);
 
+    /**
+     * {@link Pointcut} for {@link MethodExecutionTime} annotation.
+     */
     @Pointcut("@annotation(by.bsac.annotations.MethodExecutionTime)")
     public void methodExecutionTimeAnnotation() {}
 
+    /**
+     * {@link Around} advise log about target method execution time.
+     * @param pjp - {@link ProceedingJoinPoint} join point.
+     * @return - {@link Object} target method result.
+     * @throws Throwable - throws if target method throws exception.
+     */
     @SuppressWarnings("StringConcatenationInsideStringBufferAppend")
     @Around("methodExecutionTimeAnnotation() && by.bsac.aspects.CommonPointcuts.methodExecution()")
     public Object logOnMethodExecutionTime(ProceedingJoinPoint pjp) throws Throwable {

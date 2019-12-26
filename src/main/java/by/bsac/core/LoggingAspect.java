@@ -2,11 +2,19 @@ package by.bsac.core;
 
 import org.slf4j.Logger;
 
+/**
+ * Default class for all logging aspect. Class has a {@link Logger} object that's l
+ * og depend on {@link AbstractConfigurableLoggingAspect#logger_level} logging level.
+ */
 public class LoggingAspect {
 
     private Logger LOGGER;
     protected LoggerLevel logger_level;
 
+    /**
+     * Print message log depend on {@link LoggingAspect#logger_level}.
+     * @param message - message for log.
+     */
     public void printMessage(String message) {
 
         if (this.logger_level == null) {

@@ -1,6 +1,10 @@
 package by.bsac.core;
 
 import org.slf4j.Logger;
+
+/**
+ * Default implementation of {@link AbstractConfigurableLoggingAspect}.
+ */
 public class DefaultConfigurableLoggingAspect extends AbstractConfigurableLoggingAspect {
 
 
