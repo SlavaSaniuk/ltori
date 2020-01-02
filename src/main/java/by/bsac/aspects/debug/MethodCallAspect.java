@@ -1,7 +1,7 @@
-package by.bsac.aspects;
+package by.bsac.aspects.debug;
 
-import by.bsac.annotations.MethodCall;
-import by.bsac.core.LoggerLevel;
+import by.bsac.annotations.debug.MethodCall;
+import by.bsac.core.debugging.LoggerLevel;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -31,7 +31,7 @@ public class MethodCallAspect {
     private MethodCallAspect() {}
 
     //Pointcuts
-    @Pointcut("@annotation(by.bsac.annotations.MethodCall) && execution(* *(..))")
+    @Pointcut("@annotation(by.bsac.annotations.debug.MethodCall) && execution(* *(..))")
     private void methodCallAnnotation() {}
 
     //Advises

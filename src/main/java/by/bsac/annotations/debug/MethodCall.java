@@ -1,4 +1,4 @@
-package by.bsac.annotations;
+package by.bsac.annotations.debug;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

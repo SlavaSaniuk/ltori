@@ -1,4 +1,4 @@
-package by.bsac.core;
+package by.bsac.core.debugging;
 
 /**
  * Supported {@link org.slf4j.Logger} levels.

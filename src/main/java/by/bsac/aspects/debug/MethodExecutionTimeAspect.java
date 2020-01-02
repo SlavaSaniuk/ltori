@@ -1,8 +1,8 @@
-package by.bsac.aspects;
+package by.bsac.aspects.debug;
 
-import by.bsac.annotations.MethodExecutionTime;
-import by.bsac.core.DefaultConfigurableLoggingAspect;
-import by.bsac.core.LoggerLevel;
+import by.bsac.annotations.debug.MethodExecutionTime;
+import by.bsac.core.debugging.DefaultConfigurableLoggingAspect;
+import by.bsac.core.debugging.LoggerLevel;
 import by.bsac.time.TimeUtilities;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -29,7 +29,7 @@ public class MethodExecutionTimeAspect{
     /**
      * {@link Pointcut} for {@link MethodExecutionTime} annotation.
      */
-    @Pointcut("@annotation(by.bsac.annotations.MethodExecutionTime)")
+    @Pointcut("@annotation(by.bsac.annotations.debug.MethodExecutionTime)")
     public void methodExecutionTimeAnnotation() {}
 
     /**

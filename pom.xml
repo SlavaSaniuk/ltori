@@ -6,7 +6,7 @@
 
     <groupId>by.bsac</groupId>
     <artifactId>ltori</artifactId>
-    <version>0.1</version>
+    <version>0.3</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -78,103 +78,50 @@
         </dependency>
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>CompileTimeWeaving</id>
-            <build>
-                <finalName>ltori-ctw-${project.version}</finalName>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <configuration>
-                            <source>${source.version}</source>
-                            <target>${target.version}</target>
-                        </configuration>
-                    </plugin>
 
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>aspectj-maven-plugin</artifactId>
-                        <version>1.11</version>
-                        <configuration>
-                            <complianceLevel>${source.version}</complianceLevel>
-                            <source>${source.version}</source>
-                            <target>${target.version}</target>
-                            <showWeaveInfo>true</showWeaveInfo>
-                            <verbose>true</verbose>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${source.version}</source>
+                    <target>${target.version}</target>
+                </configuration>
+            </plugin>
 
-                        </configuration>
-                        <dependencies>
-                            <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjtools -->
-                            <dependency>
-                                <groupId>org.aspectj</groupId>
-                                <artifactId>aspectjtools</artifactId>
-                                <version>1.9.5</version>
-                            </dependency>
-                        </dependencies>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>compile</goal>
-                                    <goal>test-compile</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>aspectj-maven-plugin</artifactId>
+                <version>1.11</version>
+                <configuration>
+                    <complianceLevel>${source.version}</complianceLevel>
+                    <source>${source.version}</source>
+                    <target>${target.version}</target>
+                    <showWeaveInfo>true</showWeaveInfo>
+                    <verbose>true</verbose>
 
-                </plugins>
-            </build>
-        </profile>
+                </configuration>
+                <dependencies>
+                    <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjtools -->
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjtools</artifactId>
+                        <version>1.9.5</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
-        <profile>
-            <id>LoadTimeWeaving</id>
-            <build>
-                <finalName>ltori-ltw-${project.version}</finalName>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <configuration>
-                            <source>${source.version}</source>
-                            <target>${target.version}</target>
-                        </configuration>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>aspectj-maven-plugin</artifactId>
-                        <version>1.11</version>
-                        <configuration>
-                            <complianceLevel>${source.version}</complianceLevel>
-                            <source>${source.version}</source>
-                            <target>${target.version}</target>
-                            <showWeaveInfo>true</showWeaveInfo>
-                            <verbose>true</verbose>
-                            <outxml>true</outxml>
-                        </configuration>
-                        <dependencies>
-                            <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjtools -->
-                            <dependency>
-                                <groupId>org.aspectj</groupId>
-                                <artifactId>aspectjtools</artifactId>
-                                <version>1.9.5</version>
-                            </dependency>
-                        </dependencies>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>compile</goal>
-                                    <goal>test-compile</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
 
 

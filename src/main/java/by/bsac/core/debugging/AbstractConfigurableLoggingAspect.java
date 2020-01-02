@@ -1,4 +1,4 @@
-package by.bsac.core;
+package by.bsac.core.debugging;
 
 public abstract class AbstractConfigurableLoggingAspect extends LoggingAspect {
 

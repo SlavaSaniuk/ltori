@@ -1,6 +1,6 @@
 package by.bsac.spring.beans;
 
-import by.bsac.annotations.MethodCall;
+import by.bsac.annotations.debug.MethodCall;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 

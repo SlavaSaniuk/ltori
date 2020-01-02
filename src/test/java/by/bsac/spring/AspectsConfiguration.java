@@ -1,8 +1,8 @@
 package by.bsac.spring;
 
-import by.bsac.aspects.MethodCallAspect;
-import by.bsac.aspects.MethodExecutionTimeAspect;
-import by.bsac.core.LoggerLevel;
+import by.bsac.aspects.debug.MethodCallAspect;
+import by.bsac.aspects.debug.MethodExecutionTimeAspect;
+import by.bsac.core.debugging.LoggerLevel;
 import org.aspectj.lang.Aspects;
 import org.springframework.context.annotation.*;
 

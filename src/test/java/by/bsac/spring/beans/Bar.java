@@ -1,7 +1,7 @@
 package by.bsac.spring.beans;
 
-import by.bsac.annotations.MethodCall;
-import by.bsac.annotations.MethodExecutionTime;
+import by.bsac.annotations.debug.MethodCall;
+import by.bsac.annotations.debug.MethodExecutionTime;
 import org.springframework.stereotype.Component;
 
 
