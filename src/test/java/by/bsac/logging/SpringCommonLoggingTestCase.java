@@ -171,6 +171,16 @@ public class SpringCommonLoggingTestCase {
         LOGGER.debug("Actual message: " +actual_message);
     }
 
+    /*
+    **** Dependency management section
+     */
+    @Test
+    void autowireViaSetter_beansDefinitions_shouldReturnMessageLog() {
+        String expected_message = String.format("Autowire [Bean of class [%s]] to [%s] via [SETTER] parameter;", Foo.class.getCanonicalName(), Bar.class.getCanonicalName());
+        String actual_message = DependencyManagement.autowireViaSetter(BeanDefinition.of(Foo.class), Bar.class);
+        Assertions.assertEquals(expected_message, actual_message);
+        LOGGER.debug("Actual message: " +actual_message);
+    }
 
 
 

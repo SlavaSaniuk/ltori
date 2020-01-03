@@ -181,5 +181,28 @@ public class SpringCommonLogging {
 
     }
 
+    @SuppressWarnings("AccessStaticViaInstance")
+    public static class DependencyManagement {
+
+        private static final String AUTOWIRE_VIA_MSG = "Autowire [%s] to [%s] via [%s] parameter;";
+        private static final String SET_VIA_MSG = "Set [%s] to [%s] via [%s] parameter;";
+
+        public static String autowireViaSetter(BeanDefinition of, Class<?> to) {
+            return String.format(AUTOWIRE_VIA_MSG, of.getBeanName(), to.getCanonicalName(), "SETTER");
+        }
+
+        public static String autowireViaConstructor(BeanDefinition of, Class<?> to) {
+            return String.format(AUTOWIRE_VIA_MSG, of.getBeanName(), to.getCanonicalName(), "CONSTRUCTOR");
+        }
+
+        public static String setViaSetter(BeanDefinition of, Class<?> to) {
+            return String.format(SET_VIA_MSG, of.getBeanName(), to.getCanonicalName(), "SETTER");
+        }
+
+        public static String setViaConstructor(BeanDefinition of, Class<?> to) {
+            return String.format(SET_VIA_MSG, of.getBeanName(), to.getCanonicalName(), "CONSTRUCTOR");
+        }
+
+    }
 
 }
