@@ -13,7 +13,7 @@ public class AspectsConfiguration {
     @Profile("DEBUG")
     public MethodCallAspect getDebugMethodCallAspect() {
         MethodCallAspect aspect = Aspects.aspectOf(MethodCallAspect.class);
-        aspect.setLoggerLevel(LoggerLevel.DEBUG);
+        aspect.setLoggerLevel(LoggerLevel.INFO);
         return aspect;
     }
 
@@ -21,7 +21,7 @@ public class AspectsConfiguration {
     @Profile("DEBUG")
     public MethodExecutionTimeAspect getMethodExecutionTimeAspect() {
         MethodExecutionTimeAspect aspect = Aspects.aspectOf(MethodExecutionTimeAspect.class);
-        aspect.setLoggerLevel(LoggerLevel.DEBUG);
+        aspect.setLoggerLevel(LoggerLevel.INFO);
         return aspect;
     }
 
