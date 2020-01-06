@@ -3,5 +3,6 @@
         <aspect name="by.bsac.aspects.CommonPointcuts"/>
         <aspect name="by.bsac.aspects.debug.MethodCallAspect"/>
         <aspect name="by.bsac.aspects.debug.MethodExecutionTimeAspect"/>
+        <aspect name="by.bsac.aspects.validation.ParameterValidationAspect"/>
     </aspects>
 </aspectj>
