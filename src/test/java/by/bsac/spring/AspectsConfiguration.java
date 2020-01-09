@@ -4,6 +4,7 @@ import by.bsac.aspects.debug.MethodCallAspect;
 import by.bsac.aspects.debug.MethodExecutionTimeAspect;
 import by.bsac.aspects.validation.ParameterValidationAspect;
 import by.bsac.core.debugging.LoggerLevel;
+import by.bsac.validation.validators.HelloParameterValidator;
 import by.bsac.validation.validators.SimpleValidator;
 import org.aspectj.lang.Aspects;
 import org.springframework.context.annotation.*;
@@ -31,6 +32,7 @@ public class AspectsConfiguration {
     public ParameterValidationAspect getParameterValidationAspect() {
         ParameterValidationAspect aspect = Aspects.aspectOf(ParameterValidationAspect.class);
         aspect.addValidator(new SimpleValidator());
+        aspect.addValidator(new HelloParameterValidator());
         return aspect;
     }
 

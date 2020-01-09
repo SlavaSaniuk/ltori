@@ -16,6 +16,6 @@ public @interface ParameterValidation {
 
     Class<?>[] parametersClasses() default {};
 
-    String[] parametersNames() default {};
+    String errorMessage() default "";
 
 }
