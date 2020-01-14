@@ -28,6 +28,7 @@ public class ParameterValidationAspect {
     private final List<ParameterValidator> validators = new ArrayList<>();
     private static final String DEFAULT_ERROR_MESSAGE = "Invalid parameter value [%s];";
     private static final String NO_PARAMETER_VALIDATOR_EXCEPTION_MSG = "No ParameterValidator specified for method [%s] of class[%s];";
+    private final ParameterValidatorsRegistry VALIDATORS_REGISTRY = ParameterValidatorsRegistry.getInstance(); //Shared ParameterValidatorRegistry
 
     @Pointcut("@annotation(by.bsac.annotations.validation.ParameterValidation)")
     public void parameterValidationAnnotation() {}
@@ -66,10 +67,11 @@ public class ParameterValidationAspect {
     }
 
     public <V extends ParameterValidator> void addValidator(V validator) {
-        this.validators.add(validator);
+        this.VALIDATORS_REGISTRY.getParameterValidators().add(validator);
     }
 
     private ParameterValidator getValidator(Class<? extends ParameterValidator> required_validator_class) {
-        return this.validators.stream().filter(v -> v.getClass() == required_validator_class).findFirst().orElse(null);
+        return this.VALIDATORS_REGISTRY.getParameterValidators().stream().filter(v -> v.getClass() == required_validator_class).findFirst().orElse(null);
     }
+
 }

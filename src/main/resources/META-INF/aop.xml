@@ -1,4 +1,7 @@
 <aspectj>
+
+    <weaver options="-showWeaveInfo"/>
+
     <aspects>
         <aspect name="by.bsac.aspects.CommonPointcuts"/>
         <aspect name="by.bsac.aspects.debug.MethodCallAspect"/>
