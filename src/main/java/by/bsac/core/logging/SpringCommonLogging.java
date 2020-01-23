@@ -203,6 +203,16 @@ public class SpringCommonLogging {
             return String.format(SET_VIA_MSG, of.getBeanName(), to.getCanonicalName(), "CONSTRUCTOR");
         }
 
+        public static class Exceptions {
+
+            private static final String NULL_PROPERTY_EXCEPTION_MSG = "Spring bean dependency of [%s] bean is null;";
+
+            public static String nullProperty( Class<?> bean_class) {
+                return String.format(NULL_PROPERTY_EXCEPTION_MSG, bean_class.getCanonicalName());
+            }
+            
+        }
+
     }
 
 }
