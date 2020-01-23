@@ -210,7 +210,7 @@ public class SpringCommonLogging {
             public static String nullProperty( Class<?> bean_class) {
                 return String.format(NULL_PROPERTY_EXCEPTION_MSG, bean_class.getCanonicalName());
             }
-            
+
         }
 
     }
