@@ -1,6 +1,8 @@
 package by.bsac.aspects.debug;
 
 import by.bsac.annotations.debug.MethodExecutionTime;
+import by.bsac.aspects.ConfigurableAspects;
+import by.bsac.core.AspectsRegistry;
 import by.bsac.core.debugging.DefaultConfigurableLoggingAspect;
 import by.bsac.core.debugging.LoggerLevel;
 import by.bsac.time.TimeUtilities;
@@ -18,13 +20,13 @@ import java.time.LocalTime;
 /**
  * Aspect for {@link MethodExecutionTime} annotation.
  */
-@SuppressWarnings("MissingAspectjAutoproxyInspection")
 @Aspect
-public class MethodExecutionTimeAspect{
+public class MethodExecutionTimeAspect implements ConfigurableAspects {
 
     //Logger
     private static final Logger LOGGER = LoggerFactory.getLogger("METHOD_EXECUTION_TIME_ASPECT_LOG");
     private static final DefaultConfigurableLoggingAspect EXECUTION_TIME_LOGGER = new DefaultConfigurableLoggingAspect(LOGGER);
+    private final AspectsRegistry REGISTRY = AspectsRegistry.getInstance();
 
     /**
      * {@link Pointcut} for {@link MethodExecutionTime} annotation.
@@ -41,6 +43,8 @@ public class MethodExecutionTimeAspect{
     @SuppressWarnings("StringConcatenationInsideStringBufferAppend")
     @Around("methodExecutionTimeAnnotation() && by.bsac.aspects.CommonPointcuts.methodExecution()")
     public Object logOnMethodExecutionTime(ProceedingJoinPoint pjp) throws Throwable {
+
+        if (!REGISTRY.isEnabled(MethodExecutionTimeAspect.class)) return pjp.proceed();
 
         Method method = ((MethodSignature) pjp.getSignature()).getMethod();
         EXECUTION_TIME_LOGGER.printMessage(String.format("Start of measure execution time of method [%s] of class [%s]",
@@ -87,5 +91,20 @@ public class MethodExecutionTimeAspect{
 
     public void setLoggerLevel(LoggerLevel a_level) {
         EXECUTION_TIME_LOGGER.setLoggerLevel(a_level);
+    }
+
+    @Override
+    public void enable() {
+        REGISTRY.enableAspect(MethodExecutionTimeAspect.class);
+    }
+
+    @Override
+    public void disable() {
+        REGISTRY.disableAspect(MethodExecutionTimeAspect.class);
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return REGISTRY.isEnabled(MethodExecutionTimeAspect.class);
     }
 }

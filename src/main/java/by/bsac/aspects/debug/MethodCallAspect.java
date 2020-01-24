@@ -1,6 +1,8 @@
 package by.bsac.aspects.debug;
 
 import by.bsac.annotations.debug.MethodCall;
+import by.bsac.aspects.ConfigurableAspects;
+import by.bsac.core.AspectsRegistry;
 import by.bsac.core.debugging.LoggerLevel;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -19,13 +21,13 @@ import java.util.Arrays;
 /**
  * Aspect for {@link MethodCall} annotation.
  */
-@SuppressWarnings("MissingAspectjAutoproxyInspection")
 @Aspect
-public class MethodCallAspect {
+public class MethodCallAspect implements ConfigurableAspects {
 
     //Logger
     private static final Logger LOGGER = LoggerFactory.getLogger("METHOD_CALL_ASPECT_LOG");
     private LoggerLevel logger_level;
+    private final AspectsRegistry REGISTRY =  AspectsRegistry.getInstance();
 
     //Default constructor
     private MethodCallAspect() {}
@@ -37,6 +39,9 @@ public class MethodCallAspect {
     //Advises
     @Before("methodCallAnnotation()")
     public void logOnMethodCall(JoinPoint jp) {
+
+        //Disable if aspect is not available
+        if (!this.isEnabled()) return;
 
         //log variables
         final String DEFAULT_LOG_MSG = "Program thread [%s] call method [%s] of class [%s]";
@@ -101,5 +106,20 @@ public class MethodCallAspect {
 
     public void setLoggerLevel(LoggerLevel level) {
         this.logger_level = level;
+    }
+
+    @Override
+    public void enable() {
+        REGISTRY.enableAspect(MethodCallAspect.class);
+    }
+
+    @Override
+    public void disable() {
+        REGISTRY.disableAspect(MethodCallAspect.class);
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return REGISTRY.isEnabled(MethodCallAspect.class);
     }
 }
