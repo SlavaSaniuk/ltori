@@ -7,5 +7,6 @@
         <aspect name="by.bsac.aspects.debug.MethodCallAspect"/>
         <aspect name="by.bsac.aspects.debug.MethodExecutionTimeAspect"/>
         <aspect name="by.bsac.aspects.validation.ParameterValidationAspect"/>
+        <aspect name="by.bsac.aspects.logging.BeforeLogAspect" />
     </aspects>
 </aspectj>
